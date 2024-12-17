@@ -57,7 +57,7 @@ export const LoginTab = () => {
             <CardHeader>
                 <CardTitle>Welcome back!</CardTitle>
                 <CardDescription>
-                    Login to manage
+                    Login to view all available features
                 </CardDescription>
             </CardHeader>
             <CardContent className="space-y-2">
@@ -86,24 +86,27 @@ export const LoginTab = () => {
                                 name="password"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Password</FormLabel>
+                                        <div className="flex items-center justify-between">
+                                            <FormLabel>Password</FormLabel>
+                                            <Button
+                                                size="sm"
+                                                variant="link"
+                                                asChild
+                                                className="text-xs px-0"
+                                            >
+                                                <Link href="/reset">
+                                                    Forgot password?
+                                                </Link>
+                                            </Button>
+                                        </div>
                                         <FormControl>
                                             <Input {...field} placeholder="******" type="password" />
                                         </FormControl>
-                                        {/* <Button
-                      size="sm"
-                      variant="link"
-                      asChild
-                      className="px-0 font-normal"
-                    >
-                      <Link href="/auth/reset">
-                        Forgot password?
-                      </Link>
-                    </Button> */}
                                         <FormMessage />
                                     </FormItem>
                                 )}
                             />
+
                         </div>
 
                         {/* This step can be deferred for later use */}
@@ -124,6 +127,7 @@ export const LoginTab = () => {
                             </svg>
                             Login with Google
                         </Button>
+                        {/* <Social/> */}
                     </form>
                 </Form>
             </CardContent>

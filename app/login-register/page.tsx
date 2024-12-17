@@ -10,7 +10,7 @@ export default function LoginRegister() {
         <div className="grid min-h-svh lg:grid-cols-2">
             <div className="relative bg-muted lg:block bg-neutral-800">
                 <div className="flex justify-center gap-2 md:justify-start text-neutral-50">
-                    <Link href="/" className="flex items-center gap-2 font-medium m-5">
+                    <Link href="/" className="flex items-center gap-2 font-medium p-6">
                         <div className="flex h-6 w-6 items-center justify-center rounded-md bg-neutral-50 text-neutral-900">
                             <GalleryVerticalEnd className="size-4" />
                         </div>
