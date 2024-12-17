@@ -16,15 +16,10 @@ export default function Header({ username }) {
 		<div className="w-full flex px-8 py-4 justify-end">
 			<DropdownMenu>
 				<DropdownMenuTrigger>
-					{/* <Button
-						variant="ghost"
-						className="relative h-8 w-8 rounded-full"
-					> */}
 					<Avatar>
 						<AvatarImage src="https://github.com/shadcn.png" />
 						<AvatarFallback>CN</AvatarFallback>
 					</Avatar>
-					{/* </Button> */}
 				</DropdownMenuTrigger>
 				<DropdownMenuContent align="end">
 					<DropdownMenuLabel>{username}</DropdownMenuLabel>
