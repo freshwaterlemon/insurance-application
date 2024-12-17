@@ -36,4 +36,4 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-insurance-application/
+/insurance-application
