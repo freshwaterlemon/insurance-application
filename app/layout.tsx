@@ -3,8 +3,10 @@ import localFont from 'next/font/local';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/app-sidebar';
 import Header from '@/components/header';
-import { Toaster } from "@/components/ui/toaster"
+import { Toaster } from '@/components/ui/toaster';
 import './globals.css';
+import { auth } from '@/lib/auth';
+import LoginRegister from './login-register/page';
 
 const geistSans = localFont({
 	src: './fonts/GeistVF.woff',
@@ -22,25 +24,35 @@ export const metadata: Metadata = {
 	description: 'Insurance Dashboard',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	const session = await auth();
 	return (
 		<html lang="en">
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased flex`}
 			>
-				<SidebarProvider>
-					<AppSidebar />
-					<SidebarTrigger />
-					<main className="w-full">
-						<Header />
-						{children}
-					</main>
-					<Toaster />
-				</SidebarProvider>
+				{session != null ? (
+					<SidebarProvider>
+						<AppSidebar />
+						<SidebarTrigger />
+						<main className="w-full">
+							<Header />
+							{children}
+						</main>
+						<Toaster />
+					</SidebarProvider>
+				) : (
+					<>
+						<main className="w-full">
+							<LoginRegister />
+						</main>
+						<Toaster />
+					</>
+				)}
 			</body>
 		</html>
 	);
