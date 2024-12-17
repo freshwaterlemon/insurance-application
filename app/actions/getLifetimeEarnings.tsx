@@ -66,5 +66,8 @@ export async function getLifetimeEarnings(): Promise<number> {
   } catch (error) {
     console.error(`Failed to calculate lifetime earnings: ${error.message}`);
     throw new Error(`Failed to calculate lifetime earnings`);
+  } finally {
+    // Ensure the database connection is closed
+    await db.$disconnect();
   }
 }

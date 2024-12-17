@@ -59,8 +59,5 @@ export async function getDashboardData() {
     };
   } catch (error) {
     return { error: `${error.message || error} - Failed to fetch dashboard data` };
-  } finally {
-    // Ensure the database connection is closed
-    await db.$disconnect();
-  }
+  } 
 }

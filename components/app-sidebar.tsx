@@ -1,10 +1,4 @@
-import {
-	Home,
-	Wallet,
-	Users,
-	ChevronUp,
-	User2,
-} from 'lucide-react';
+import { Home, Wallet, Users, ChevronUp, User2 } from 'lucide-react';
 
 import {
 	Sidebar,
@@ -23,6 +17,9 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import Link from 'next/link';
+import { signOut } from '@/lib/auth';
+import { Button } from './ui/button';
 
 // Menu items.
 const items = [
@@ -43,7 +40,7 @@ const items = [
 	},
 ];
 
-export function AppSidebar() {
+export function AppSidebar({ username }) {
 	return (
 		<Sidebar collapsible="icon">
 			<SidebarContent>
@@ -73,20 +70,35 @@ export function AppSidebar() {
 						<DropdownMenu>
 							<DropdownMenuTrigger asChild>
 								<SidebarMenuButton>
-									<User2 /> Username
+									<User2 /> {username}
 									<ChevronUp className="ml-auto" />
 								</SidebarMenuButton>
 							</DropdownMenuTrigger>
 							<DropdownMenuContent
 								side="top"
-								className="w-[--radix-popper-anchor-width]"
+								// className="w-[--radix-popper-anchor-width]"
 							>
-								<DropdownMenuItem>
-									<span>My Account</span>
-								</DropdownMenuItem>
-								<DropdownMenuItem>
-									<span>Sign out</span>
-								</DropdownMenuItem>
+								<Link href={'/account'}>
+									<DropdownMenuItem>
+										<span>My Account</span>
+									</DropdownMenuItem>
+								</Link>
+
+								<span>
+									<form
+										action={async (formData) => {
+											'use server';
+											await signOut();
+										}}
+									>
+										<DropdownMenuItem>
+											<Button variant='ghost' type="submit" className='text-left h-3 w-full'>
+												Log Out
+											</Button>
+										</DropdownMenuItem>
+									</form>
+								</span>
+
 							</DropdownMenuContent>
 						</DropdownMenu>
 					</SidebarMenuItem>

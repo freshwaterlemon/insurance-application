@@ -7,9 +7,11 @@ import {
 	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-// import { Button } from './ui/button';
+import { Button } from './ui/button';
+import Link from 'next/link';
+import { signOut } from '@/lib/auth';
 
-export default function Header() {
+export default function Header({ username }) {
 	return (
 		<div className="w-full flex px-8 py-4 justify-end">
 			<DropdownMenu>
@@ -25,10 +27,29 @@ export default function Header() {
 					{/* </Button> */}
 				</DropdownMenuTrigger>
 				<DropdownMenuContent align="end">
-					<DropdownMenuLabel>My Account</DropdownMenuLabel>
-					<DropdownMenuItem>My Account</DropdownMenuItem>
+					<DropdownMenuLabel>{username}</DropdownMenuLabel>
+					<Link href="/account">
+						<DropdownMenuItem>My Account</DropdownMenuItem>
+					</Link>
 					<DropdownMenuSeparator />
-					<DropdownMenuItem>Log Out</DropdownMenuItem>
+					<span>
+						<form
+							action={async (formData) => {
+								'use server';
+								await signOut();
+							}}
+						>
+							<DropdownMenuItem>
+								<Button
+									variant="ghost"
+									type="submit"
+									className="h-3 w-full text-left"
+								>
+									Log Out
+								</Button>
+							</DropdownMenuItem>
+						</form>
+					</span>
 				</DropdownMenuContent>
 			</DropdownMenu>
 		</div>

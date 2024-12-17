@@ -30,6 +30,7 @@ export default async function RootLayout({
 	children: React.ReactNode;
 }>) {
 	const session = await auth();
+	const username = session?.user?.name
 	return (
 		<html lang="en">
 			<body
@@ -37,10 +38,10 @@ export default async function RootLayout({
 			>
 				{session != null ? (
 					<SidebarProvider>
-						<AppSidebar />
+						<AppSidebar username={username}/>
 						<SidebarTrigger />
 						<main className="w-full">
-							<Header />
+							<Header username={username}/>
 							{children}
 						</main>
 						<Toaster />
