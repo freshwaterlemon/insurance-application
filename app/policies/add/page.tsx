@@ -197,13 +197,14 @@ export default function AddPolicyPage() {
 							/>
 
 							<CardFooter className='justify-center'>
-								<Button type="button" onClick={() => router.back()} className='mx-4 mt-4'>Cancel</Button>
-								{/* <Button type="submit" className='mx-4 mt-4'>Submit</Button> */}
 								<Button type="submit" onClick={() => {
 									toast({
 										description: "Policy added",
 									})
 								}} className='mx-4 mt-4'>Submit</Button>
+								<Button variant='secondary' type="button" onClick={() => router.back()} className='mx-4 mt-4'>Cancel</Button>
+								{/* <Button type="submit" className='mx-4 mt-4'>Submit</Button> */}
+
 							</CardFooter>
 						</form>
 					</Form>
