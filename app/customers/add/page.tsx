@@ -31,23 +31,17 @@ import {
 import { getPolicies } from '@/app/actions/getPolicies';
 import { createCustomerItem } from '@/app/actions/createCustomerItem';
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
-
-// Define your validation schema
-const addPolicyFormSchema = z.object({
-	id: z.string().min(1, 'NRIC is required'),
-	email: z.string().email('Invalid email'),
-	firstname: z.string().min(1, 'First name is required'),
-	lastname: z.string().min(1, 'Last name is required'),
-	availablePolicies: z.string().min(1, 'Policy is required'),
-});
+import { addPolicyHolderFormSchema } from '@/schemas';
 
 export default function AddPolicyPage() {
-	const router = useRouter()
-	const { toast } = useToast()
+	const router = useRouter();
+	const { toast } = useToast();
 	// const [availablePolicies, setAvailablePolicies] = useState<string[]>([])
-	const [availablePolicies, setAvailablePolicies] = useState<{ id: string, name: string }[]>([]);
+	const [availablePolicies, setAvailablePolicies] = useState<
+		{ id: string; name: string }[]
+	>([]);
 
 	useEffect(() => {
 		async function fetchPolicyTypes() {
@@ -65,7 +59,7 @@ export default function AddPolicyPage() {
 	}, []);
 
 	const form = useForm({
-		resolver: zodResolver(addPolicyFormSchema),
+		resolver: zodResolver(addPolicyHolderFormSchema),
 		defaultValues: {
 			id: '',
 			email: '',
@@ -78,13 +72,17 @@ export default function AddPolicyPage() {
 		console.log(data);
 		try {
 			await createCustomerItem(data);
+
+			toast({
+				description: 'Policy holder added',
+			});
 		} catch (error) {
 			console.error('Error adding policy:', error);
 		}
 	};
 
 	return (
-		<div className='flex justify-center items-center'>
+		<div className="flex justify-center items-center">
 			<Card className={'w-1/3'}>
 				<CardHeader>
 					<CardTitle>Add Policy Holder</CardTitle>
@@ -102,7 +100,9 @@ export default function AddPolicyPage() {
 								render={({ field }) => (
 									<FormItem>
 										<div className="flex items-center space-x-4">
-											<FormLabel className="w-24 text-left">NRIC</FormLabel>
+											<FormLabel className="w-24 text-left">
+												NRIC
+											</FormLabel>
 											<div className="flex-grow">
 												<FormControl>
 													<Input
@@ -111,12 +111,10 @@ export default function AddPolicyPage() {
 														type="text"
 														{...field}
 													/>
-
 												</FormControl>
 												<FormMessage className="mt-2" />
 											</div>
 										</div>
-
 									</FormItem>
 								)}
 							/>
@@ -126,7 +124,9 @@ export default function AddPolicyPage() {
 								render={({ field }) => (
 									<FormItem>
 										<div className="flex items-center space-x-4">
-											<FormLabel className="w-24 text-left">Email</FormLabel>
+											<FormLabel className="w-24 text-left">
+												Email
+											</FormLabel>
 											<div className="flex-grow">
 												<FormControl>
 													<Input
@@ -135,12 +135,10 @@ export default function AddPolicyPage() {
 														type="email"
 														{...field}
 													/>
-
 												</FormControl>
 												<FormMessage className="mt-2" />
 											</div>
 										</div>
-
 									</FormItem>
 								)}
 							/>
@@ -150,7 +148,9 @@ export default function AddPolicyPage() {
 								render={({ field }) => (
 									<FormItem>
 										<div className="flex items-center space-x-4">
-											<FormLabel className="w-24 text-left">First Name</FormLabel>
+											<FormLabel className="w-24 text-left">
+												First Name
+											</FormLabel>
 											<div className="flex-grow">
 												<FormControl>
 													<Input
@@ -159,12 +159,10 @@ export default function AddPolicyPage() {
 														type="text"
 														{...field}
 													/>
-
 												</FormControl>
 												<FormMessage className="mt-2" />
 											</div>
 										</div>
-
 									</FormItem>
 								)}
 							/>
@@ -175,7 +173,9 @@ export default function AddPolicyPage() {
 								render={({ field }) => (
 									<FormItem>
 										<div className="flex items-center space-x-4">
-											<FormLabel className="w-24 text-left">Last Name</FormLabel>
+											<FormLabel className="w-24 text-left">
+												Last Name
+											</FormLabel>
 											<div className="flex-grow">
 												<FormControl>
 													<Input
@@ -184,12 +184,10 @@ export default function AddPolicyPage() {
 														type="text"
 														{...field}
 													/>
-
 												</FormControl>
 												<FormMessage className="mt-2" />
 											</div>
 										</div>
-
 									</FormItem>
 								)}
 							/>
@@ -200,12 +198,24 @@ export default function AddPolicyPage() {
 								render={({ field }) => (
 									<FormItem>
 										<div className="flex items-center space-x-4">
-											<FormLabel className="w-24 text-left">Policies</FormLabel>
+											<FormLabel className="w-24 text-left">
+												Policies
+											</FormLabel>
 											<div className="flex-grow">
 												<FormControl>
 													<div className="flex-grow">
-														<Select onValueChange={(value) => field.onChange(value)}
-															defaultValue={field.value}>
+														<Select
+															onValueChange={(
+																value
+															) =>
+																field.onChange(
+																	value
+																)
+															}
+															defaultValue={
+																field.value
+															}
+														>
 															<SelectTrigger className="w-full">
 																<SelectValue placeholder="Select policies available" />
 															</SelectTrigger>
@@ -215,11 +225,28 @@ export default function AddPolicyPage() {
 																		{name.id} {name.name}
 																	</SelectItem>
 																))} */}
-																{availablePolicies.map((policy, index) => (
-																	<SelectItem key={index} value={policy.id}>
-																		{policy.id} {policy.name}
-																	</SelectItem>
-																))}
+																{availablePolicies.map(
+																	(
+																		policy,
+																		index
+																	) => (
+																		<SelectItem
+																			key={
+																				index
+																			}
+																			value={
+																				policy.id
+																			}
+																		>
+																			{
+																				policy.id
+																			}{' '}
+																			{
+																				policy.name
+																			}
+																		</SelectItem>
+																	)
+																)}
 															</SelectContent>
 														</Select>
 													</div>
@@ -231,14 +258,18 @@ export default function AddPolicyPage() {
 								)}
 							/>
 
-							<CardFooter className='justify-center'>
-							<Button type="submit" onClick={() => {
-									toast({
-										description: "Policy holder added",
-									})
-								}} className='mx-4 mt-4'>Submit</Button>
-								<Button variant='secondary' type="button" onClick={() => router.back()} className='mx-4 mt-4'>Cancel</Button>
-								
+							<CardFooter className="justify-center">
+								<Button type="submit" className="mx-4 mt-4">
+									Submit
+								</Button>
+								<Button
+									variant="secondary"
+									type="button"
+									onClick={() => router.back()}
+									className="mx-4 mt-4"
+								>
+									Cancel
+								</Button>
 							</CardFooter>
 						</form>
 					</Form>

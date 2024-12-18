@@ -33,14 +33,7 @@ import { createPolicyItem } from '@/app/actions/createPolicyItem';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation'
 import { useToast } from '@/hooks/use-toast';
-
-// Define your validation schema
-const addPolicyFormSchema = z.object({
-	id: z.string().min(1, 'ID is required'),
-	name: z.string().min(3, 'Name must be at least 3 characters'),
-	price: z.string().min(1, 'Price is required').regex(/^\d+$/, 'Price must be a number'),
-	policyType: z.string().min(1, 'Policy type is required'),
-});
+import { addPolicyFormSchema } from '@/schemas';
 
 export default function AddPolicyPage() {
 	const router = useRouter()
@@ -73,6 +66,9 @@ export default function AddPolicyPage() {
 	const onSubmit = async (data) => {
 		try {
 			await createPolicyItem(data);
+			toast({
+				description: "Policy added",
+			})
 		} catch (error) {
 			console.error('Error adding policy:', error);
 		}
@@ -197,11 +193,7 @@ export default function AddPolicyPage() {
 							/>
 
 							<CardFooter className='justify-center'>
-								<Button type="submit" onClick={() => {
-									toast({
-										description: "Policy added",
-									})
-								}} className='mx-4 mt-4'>Submit</Button>
+								<Button type="submit" className='mx-4 mt-4'>Submit</Button>
 								<Button variant='secondary' type="button" onClick={() => router.back()} className='mx-4 mt-4'>Cancel</Button>
 								{/* <Button type="submit" className='mx-4 mt-4'>Submit</Button> */}
 

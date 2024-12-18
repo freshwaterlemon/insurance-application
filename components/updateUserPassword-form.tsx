@@ -13,21 +13,20 @@ import {
 } from '@/components/ui/sheet';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
-import { updateUsername } from '@/app/actions/updateUsername';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { getSession } from 'next-auth/react';
-import { updateUsernameSchema } from '@/schemas';
+import { updateUserPasswordSchema } from '@/schemas';
+import { updateUserPassword } from '@/app/actions/updatePassword';
 
-export default function UpdateUsernameForm({ email }) {
+export default function UpdateUserPasswordForm({ email }) {
     const { toast } = useToast();
 
     const form = useForm({
-        resolver: zodResolver(updateUsernameSchema),
+        resolver: zodResolver(updateUserPasswordSchema),
         defaultValues: {
-            username: '',
+            password: '',
         },
     });
 
@@ -35,11 +34,11 @@ export default function UpdateUsernameForm({ email }) {
 
         console.log(data);
         try {
-            await updateUsername(email, data);
+            await updateUserPassword(email, data);
             form.reset()
             toast({
-                title: 'Name updated successfully',
-                description: 'Log back in to see the changes',
+                title: 'Password updated successfully',
+                description: 'Log back in with new password next time',
             });
             // // Refresh the session to reflect the updated username
             // const updatedSession = await getSession();
@@ -60,17 +59,17 @@ export default function UpdateUsernameForm({ email }) {
                     <div className="space-y-4 mt-5">
                         <FormField
                             control={form.control}
-                            name="username"
+                            name="password"
                             render={({ field }) => (
                                 <FormItem>
                                     <FormLabel className="mx-1">
-                                        Username
+                                        Password
                                     </FormLabel>
                                     <FormControl>
                                         <Input
                                             className="h-10 w-full"
-                                            placeholder="John Doe"
-                                            type="text"
+                                            placeholder="******"
+                                            type="password"
                                             {...field}
                                         />
                                     </FormControl>

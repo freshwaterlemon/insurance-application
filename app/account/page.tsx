@@ -18,49 +18,79 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { auth } from '@/lib/auth';
 import { SquarePen } from 'lucide-react';
 import UpdateUsernameForm from '@/components/updateUsername-form';
+import UpdateUserPasswordForm from '@/components/updateUserPassword-form';
 
 export default async function Account() {
   const session = await auth();
 
   return (
     <>
-      <Sheet>
-        <Card className="w-[400px]">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
-            <Avatar className="size-16">
-              <AvatarImage src="https://github.com/shadcn.png" />
-              <AvatarFallback>{(session?.user?.name)?.charAt(0)}</AvatarFallback>
-            </Avatar>
+
+      <div className="flex justify-start ">
+        <div className="flex flex-row items-center justify-between space-y-0 pb-3 gap-5">
+          <Avatar className="size-16">
+            <AvatarImage src="https://github.com/shadcn.png" />
+            <AvatarFallback>CN</AvatarFallback>
+          </Avatar>
+          <div className="flex-col ml-1">
+            <div className="text-2xl font-bold">
+              {session?.user?.name}
+            </div>
+            <div className="text-xs text-muted-foreground">
+              {session?.user?.email}
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div className='flex flex-row gap-5'>
+        <div className='gap-5'>
+          <Sheet>
             <SheetTrigger asChild>
-              <Button variant="outline">
+              <Button variant="default" className='mt-5'>
                 <SquarePen className="h-6 w-6 text-muted-foreground" />
-                Edit
+                Edit Profile
               </Button>
             </SheetTrigger>
-          </CardHeader>
-          <CardContent className="ml-1">
-            <CardTitle className="text-2xl font-bold">
-              {session?.user?.name}
-            </CardTitle>
-            <CardDescription className="text-xs text-muted-foreground">
-              {session?.user?.email}
-            </CardDescription>
-          </CardContent>
-        </Card>
 
-        <SheetContent>
-          <SheetHeader>
-            <SheetTitle>Edit profile</SheetTitle>
-            <SheetDescription>
-              Make changes to your profile here. Click save when
-              you&apos;re done.
-            </SheetDescription>
-          </SheetHeader>
+            <SheetContent>
+              <SheetHeader>
+                <SheetTitle>Edit profile</SheetTitle>
+                <SheetDescription>
+                  Make changes to your profile here. Click save when
+                  you&apos;re done.
+                </SheetDescription>
+              </SheetHeader>
 
-          <UpdateUsernameForm email={session?.user?.email} />
+              <UpdateUsernameForm email={session?.user?.email} />
 
-        </SheetContent>
-      </Sheet>
+            </SheetContent>
+          </Sheet>
+        </div>
+        <div className='gap-5'>
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="default" className='mt-5'>
+                <SquarePen className="h-6 w-6 text-muted-foreground" />
+                Change Password
+              </Button>
+            </SheetTrigger>
+
+            <SheetContent>
+              <SheetHeader>
+                <SheetTitle>Change password</SheetTitle>
+                <SheetDescription>
+                  Make changes to your password here. Click save when
+                  you&apos;re done.
+                </SheetDescription>
+              </SheetHeader>
+
+              <UpdateUserPasswordForm email={session?.user?.email} />
+
+            </SheetContent>
+          </Sheet>
+        </div>
+      </div>
     </>
   );
 }
