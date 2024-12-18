@@ -44,12 +44,12 @@ export function LifetimeEarningsCard({ data }) {
 
 
     const chartData = [
-        { percentage: normalizedValue, fill: "hsl(var(--chart-6))" },
+        { percentage: normalizedValue, fill: "grey" },
     ]
     const chartConfig = {
         desktop: {
             label: "desktop",
-            color: "hsl(var(--chart-6))"
+            color: "grey"
         }
     } satisfies ChartConfig
 
@@ -84,7 +84,7 @@ export function LifetimeEarningsCard({ data }) {
                                             gridType="circle"
                                             radialLines={false}
                                             stroke="none"
-                                            className="first:fill-muted last:fill-background"
+                                            className="first:fill-muted last:fill-card"
                                             polarRadius={[86, 74]}
                                         />
                                         <RadialBar dataKey="percentage" background cornerRadius={10} />

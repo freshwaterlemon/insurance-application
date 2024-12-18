@@ -10,6 +10,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from './ui/button';
 import Link from 'next/link';
 import { signOut } from '@/lib/auth';
+import { ModeToggle } from './theme-toggle';
 
 export default function Header({ username }) {
 	return (
@@ -47,6 +48,9 @@ export default function Header({ username }) {
 					</span>
 				</DropdownMenuContent>
 			</DropdownMenu>
+			<div className='flex ml-4 items-center'>
+			<ModeToggle />
+			</div>
 		</div>
 	);
 }

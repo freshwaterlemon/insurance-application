@@ -7,6 +7,7 @@ import { Toaster } from '@/components/ui/toaster';
 import './globals.css';
 import { auth } from '@/lib/auth';
 import LoginRegister from './login-register/page';
+import { ThemeProvider } from "@/components/theme-provider"
 
 const geistSans = localFont({
 	src: './fonts/GeistVF.woff',
@@ -37,15 +38,22 @@ export default async function RootLayout({
 				className={`${geistSans.variable} ${geistMono.variable} antialiased flex`}
 			>
 				{session != null ? (
-					<SidebarProvider>
-						<AppSidebar username={username}/>
-						<SidebarTrigger />
-						<main className="w-full">
-							<Header username={username}/>
-							{children}
-						</main>
-						<Toaster />
-					</SidebarProvider>
+					<ThemeProvider
+						attribute="class"
+						defaultTheme="system"
+						enableSystem
+						disableTransitionOnChange
+					>
+						<SidebarProvider>
+							<AppSidebar username={username} />
+							<SidebarTrigger />
+							<main className="w-full">
+								<Header username={username} />
+								{children}
+							</main>
+							<Toaster />
+						</SidebarProvider>
+					</ThemeProvider>
 				) : (
 					<>
 						<main className="w-full">

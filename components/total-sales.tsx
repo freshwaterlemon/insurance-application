@@ -14,7 +14,7 @@ interface TotalSalesProps {
 const chartConfig = {
   desktop: {
     label: "desktop",
-    color: "hsl(var(--chart-6))",
+    color: "grey",
   },
 } satisfies ChartConfig
 
@@ -48,12 +48,12 @@ export function TotalSales({ data }: TotalSalesProps) {
             axisLine={false}
             tickFormatter={(value) => `$${value}`}
           />
-          <Bar dataKey="totalEarnings" fill="hsl(var(--chart-6))" radius={4}>
+          <Bar dataKey="totalEarnings" fill="grey" radius={4}>
             <LabelList
               position="top"
-              offset={6}
+              offset={4}
               className="fill-foreground"
-              fontSize={12}
+              fontSize={11}
             />
           </Bar>
         </BarChart>
