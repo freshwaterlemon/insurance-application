@@ -1,40 +1,3 @@
-// import { db } from '@/db';
-
-// export async function getDashboardData() {
-//   try {
-//     // Count the total number of sales
-//     const totalSales = await db.policyHolderInsurancePolicy.count();
-//     // Count the total number of polices
-//     const policiesCount = await db.insurancePolicy.count();
-
-//     // Count unique customers (distinct PolicyHolderID in the join table)
-//     const uniqueCustomers = await db.policyHolderInsurancePolicy.findMany({
-//       distinct: ['PolicyHolderID'],
-//       select: {
-//         PolicyHolderID: true,
-//       },
-//     });
-//     const customersCount = uniqueCustomers.length;
-
-//     // Count unique policies (distinct InsurancePolicyID in the join table)
-//     // const uniquePolicies = await db.policyHolderInsurancePolicy.findMany({
-//     //   distinct: ['InsurancePolicyID'],
-//     //   select: {
-//     //     InsurancePolicyID: true,
-//     //   },
-//     // });
-//     // const policiesCount = uniquePolicies.length;
-
-//     return {
-//       totalSales,
-//       customersCount,
-//       policiesCount,
-//     };
-//   } catch (error) {
-//     return { error: `${error} Failed to fetch dashboard data` };
-//   }
-// }
-
 import { db } from '@/db';
 
 export async function getDashboardData() {
@@ -57,9 +20,9 @@ export async function getDashboardData() {
 			customersCount,
 			policiesCount,
 		};
-	} catch (error) {
+	} catch (error: unknown) {
 		return {
-			error: `${error.message || error} - Failed to fetch dashboard data`,
+			error: `${error} - Failed to fetch dashboard data`,
 		};
 	}
 }

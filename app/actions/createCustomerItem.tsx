@@ -16,6 +16,10 @@ export async function createCustomerItem(data: {
 	const policy = await db.insurancePolicy.findUnique({
 		where: { InsurancePolicyID: availablePolicies },
 	});
+	
+	if (!policy) {
+		throw new Error('Policy not found');
+	}
 
 	// Create the new policy holder and associate it with the insurance policy
 	const newPolicyHolder = await db.policyHolder.create({

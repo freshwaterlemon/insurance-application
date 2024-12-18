@@ -2,7 +2,17 @@
 
 import { db } from '@/db';
 
-export async function register(data) {
+interface RegisterData {
+	name: string;
+	email: string;
+	password: string;
+}
+
+interface RegisterError {
+	error: string;
+}
+
+export async function register(data: RegisterData): Promise<void | RegisterError> {
 	try {
 		await db.user.create({
 			data: {
@@ -12,6 +22,6 @@ export async function register(data) {
 			},
 		});
 	} catch (error) {
-		return { error: 'Error registering' };
+		return { error: `${error}: Error registering` };
 	}
 }

@@ -29,9 +29,9 @@ export async function getLifetimeEarnings(): Promise<number> {
 		}, 0);
 
 		return lifetimeEarnings;
-	} catch (error) {
+	} catch (error: unknown) {
 		console.error(
-			`Failed to calculate lifetime earnings: ${error.message}`
+			`Failed to calculate lifetime earnings: ${error}`
 		);
 		throw new Error(`Failed to calculate lifetime earnings`);
 	} finally {
