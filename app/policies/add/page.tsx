@@ -31,13 +31,13 @@ import {
 import { getPolicyTypes } from '@/app/actions/getPoliciesTypes';
 import { createPolicyItem } from '@/app/actions/createPolicyItem';
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
 import { addPolicyFormSchema } from '@/schemas';
 
 export default function AddPolicyPage() {
-	const router = useRouter()
-	const { toast } = useToast()
+	const router = useRouter();
+	const { toast } = useToast();
 	const [policyTypes, setPolicyTypes] = useState<string[]>([]);
 
 	useEffect(() => {
@@ -67,15 +67,15 @@ export default function AddPolicyPage() {
 		try {
 			await createPolicyItem(data);
 			toast({
-				description: "Policy added",
-			})
+				description: 'Policy added',
+			});
 		} catch (error) {
 			console.error('Error adding policy:', error);
 		}
 	};
 
 	return (
-		<div className='flex justify-center items-center'>
+		<div className="flex justify-center items-center">
 			<Card className={'w-1/3'}>
 				<CardHeader>
 					<CardTitle>Add Policy</CardTitle>
@@ -93,7 +93,9 @@ export default function AddPolicyPage() {
 								render={({ field }) => (
 									<FormItem>
 										<div className="flex items-center space-x-4">
-											<FormLabel className="w-20 text-left">ID</FormLabel>
+											<FormLabel className="w-20 text-left">
+												ID
+											</FormLabel>
 											<div className="flex-grow">
 												<FormControl>
 													<Input
@@ -102,12 +104,10 @@ export default function AddPolicyPage() {
 														type="text"
 														{...field}
 													/>
-
 												</FormControl>
 												<FormMessage className="mt-2" />
 											</div>
 										</div>
-
 									</FormItem>
 								)}
 							/>
@@ -117,7 +117,9 @@ export default function AddPolicyPage() {
 								render={({ field }) => (
 									<FormItem>
 										<div className="flex items-center space-x-4">
-											<FormLabel className="w-20 text-left">Name</FormLabel>
+											<FormLabel className="w-20 text-left">
+												Name
+											</FormLabel>
 											<div className="flex-grow">
 												<FormControl>
 													<Input
@@ -126,12 +128,10 @@ export default function AddPolicyPage() {
 														type="text"
 														{...field}
 													/>
-
 												</FormControl>
 												<FormMessage className="mt-2" />
 											</div>
 										</div>
-
 									</FormItem>
 								)}
 							/>
@@ -141,7 +141,9 @@ export default function AddPolicyPage() {
 								render={({ field }) => (
 									<FormItem>
 										<div className="flex items-center space-x-4">
-											<FormLabel className="w-20 text-left">Price</FormLabel>
+											<FormLabel className="w-20 text-left">
+												Price
+											</FormLabel>
 											<div className="flex-grow">
 												<FormControl>
 													<Input
@@ -150,12 +152,10 @@ export default function AddPolicyPage() {
 														type="number"
 														{...field}
 													/>
-
 												</FormControl>
 												<FormMessage className="mt-2" />
 											</div>
 										</div>
-
 									</FormItem>
 								)}
 							/>
@@ -166,21 +166,47 @@ export default function AddPolicyPage() {
 								render={({ field }) => (
 									<FormItem>
 										<div className="flex items-center space-x-4">
-											<FormLabel className="w-20 text-left">Policies</FormLabel>
+											<FormLabel className="w-20 text-left">
+												Policies
+											</FormLabel>
 											<div className="flex-grow">
 												<FormControl>
 													<div className="flex-grow">
-														<Select onValueChange={(value) => field.onChange(value)}
-															defaultValue={field.value}>
+														<Select
+															onValueChange={(
+																value
+															) =>
+																field.onChange(
+																	value
+																)
+															}
+															defaultValue={
+																field.value
+															}
+														>
 															<SelectTrigger className="w-2/3">
 																<SelectValue placeholder="Select policies type" />
 															</SelectTrigger>
 															<SelectContent>
-																{policyTypes.map((type, index) => (
-																	<SelectItem key={index} value={type}>
-																		{type}
-																	</SelectItem>
-																))}
+																{policyTypes.map(
+																	(
+																		type,
+																		index
+																	) => (
+																		<SelectItem
+																			key={
+																				index
+																			}
+																			value={
+																				type
+																			}
+																		>
+																			{
+																				type
+																			}
+																		</SelectItem>
+																	)
+																)}
 															</SelectContent>
 														</Select>
 													</div>
@@ -192,11 +218,19 @@ export default function AddPolicyPage() {
 								)}
 							/>
 
-							<CardFooter className='justify-center'>
-								<Button type="submit" className='mx-4 mt-4'>Submit</Button>
-								<Button variant='secondary' type="button" onClick={() => router.back()} className='mx-4 mt-4'>Cancel</Button>
+							<CardFooter className="justify-center">
+								<Button type="submit" className="mx-4 mt-4">
+									Submit
+								</Button>
+								<Button
+									variant="secondary"
+									type="button"
+									onClick={() => router.back()}
+									className="mx-4 mt-4"
+								>
+									Cancel
+								</Button>
 								{/* <Button type="submit" className='mx-4 mt-4'>Submit</Button> */}
-
 							</CardFooter>
 						</form>
 					</Form>

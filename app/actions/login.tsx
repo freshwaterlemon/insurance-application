@@ -1,21 +1,21 @@
-"use server";
+'use server';
 
-import { signIn } from "@/lib/auth";
-import { isRedirectError } from "next/dist/client/components/redirect";
+import { signIn } from '@/lib/auth';
+import { isRedirectError } from 'next/dist/client/components/redirect';
 
 export async function login(data) {
-  try {
-    await signIn("credentials", {
-      redirectTo: "/",
-      email: data.email,
-      password: data.password,
-    });
-  } catch (error) {
-    if (isRedirectError(error)) {
-      console.error("Standard Redirect Error:", error);
-      throw error;
-    }
+	try {
+		await signIn('credentials', {
+			redirectTo: '/',
+			email: data.email,
+			password: data.password,
+		});
+	} catch (error) {
+		if (isRedirectError(error)) {
+			console.error('Standard Redirect Error:', error);
+			throw error;
+		}
 
-    return { error: "Invalid credentials" };
-  }
+		return { error: 'Invalid credentials' };
+	}
 }

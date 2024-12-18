@@ -13,14 +13,13 @@ import { signOut } from '@/lib/auth';
 import { ModeToggle } from './theme-toggle';
 
 export default function Header({ username, image }) {
-	
 	return (
 		<div className="w-full flex px-8 py-4 justify-end">
 			<DropdownMenu>
 				<DropdownMenuTrigger>
 					<Avatar>
-						<AvatarImage src='' />
-						<AvatarFallback>{(username.slice(0, 3))}</AvatarFallback>
+						<AvatarImage src="" />
+						<AvatarFallback>{username.slice(0, 3)}</AvatarFallback>
 					</Avatar>
 				</DropdownMenuTrigger>
 				<DropdownMenuContent align="end">
@@ -49,8 +48,8 @@ export default function Header({ username, image }) {
 					</span>
 				</DropdownMenuContent>
 			</DropdownMenu>
-			<div className='flex ml-4 items-center'>
-			<ModeToggle />
+			<div className="flex ml-4 items-center">
+				<ModeToggle />
 			</div>
 		</div>
 	);

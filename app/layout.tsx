@@ -7,7 +7,7 @@ import { Toaster } from '@/components/ui/toaster';
 import './globals.css';
 import { auth } from '@/lib/auth';
 import LoginRegister from './login-register/page';
-import { ThemeProvider } from "@/components/theme-provider"
+import { ThemeProvider } from '@/components/theme-provider';
 
 const geistSans = localFont({
 	src: './fonts/GeistVF.woff',
@@ -31,7 +31,7 @@ export default async function RootLayout({
 	children: React.ReactNode;
 }>) {
 	const session = await auth();
-	const username = session?.user?.name
+	const username = session?.user?.name;
 	return (
 		<html lang="en">
 			<body
@@ -48,7 +48,10 @@ export default async function RootLayout({
 							<AppSidebar username={username} />
 							<SidebarTrigger />
 							<main className="w-full">
-								<Header username={username} image={session?.user?.image}/>
+								<Header
+									username={username}
+									image={session?.user?.image}
+								/>
 								{children}
 							</main>
 							<Toaster />

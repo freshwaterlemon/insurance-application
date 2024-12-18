@@ -92,13 +92,16 @@ export function AppSidebar({ username }) {
 										}}
 									>
 										<DropdownMenuItem>
-											<Button variant='ghost' type="submit" className='text-left h-3 w-full'>
+											<Button
+												variant="ghost"
+												type="submit"
+												className="text-left h-3 w-full"
+											>
 												Log Out
 											</Button>
 										</DropdownMenuItem>
 									</form>
 								</span>
-
 							</DropdownMenuContent>
 						</DropdownMenu>
 					</SidebarMenuItem>
