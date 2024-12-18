@@ -48,7 +48,7 @@ export default async function RootLayout({
 							<AppSidebar username={username} />
 							<SidebarTrigger />
 							<main className="w-full">
-								<Header username={username} />
+								<Header username={username} image={session?.user?.image}/>
 								{children}
 							</main>
 							<Toaster />

@@ -12,14 +12,15 @@ import Link from 'next/link';
 import { signOut } from '@/lib/auth';
 import { ModeToggle } from './theme-toggle';
 
-export default function Header({ username }) {
+export default function Header({ username, image }) {
+	
 	return (
 		<div className="w-full flex px-8 py-4 justify-end">
 			<DropdownMenu>
 				<DropdownMenuTrigger>
 					<Avatar>
-						<AvatarImage src="https://github.com/shadcn.png" />
-						<AvatarFallback>CN</AvatarFallback>
+						<AvatarImage src='' />
+						<AvatarFallback>{(username.slice(0, 3))}</AvatarFallback>
 					</Avatar>
 				</DropdownMenuTrigger>
 				<DropdownMenuContent align="end">
