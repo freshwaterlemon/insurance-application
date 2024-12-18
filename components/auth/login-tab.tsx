@@ -97,7 +97,7 @@ export const LoginTab = () => {
 												asChild
 												className="text-xs px-0"
 											>
-												<Link href="/reset">
+												<Link href="/">
 													Forgot password?
 												</Link>
 											</Button>

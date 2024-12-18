@@ -52,8 +52,8 @@ export default function LoginRegister() {
 
 						<div className="text-balance text-end text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 [&_a]:hover:text-primary mt-4">
 							By clicking continue, you agree to our{' '}
-							<a href="#">Terms of Service</a> and{' '}
-							<a href="#">Privacy Policy</a>.
+							<a href="/">Terms of Service</a> and{' '}
+							<a href="/">Privacy Policy</a>.
 						</div>
 					</div>
 				</div>

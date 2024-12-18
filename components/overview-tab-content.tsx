@@ -2,7 +2,6 @@ import {
 	Card,
 	CardContent,
 	CardDescription,
-	CardFooter,
 	CardHeader,
 	CardTitle,
 } from '@/components/ui/card';
@@ -98,25 +97,6 @@ export async function OverviewTabContent() {
 				</Card>
 
 				<LifetimeEarningsCard data={lifetimeEarnings} />
-				{/* <Card className="col-span-2">
-                    <CardHeader>
-                        <CardTitle>Lifetime Earning</CardTitle>
-                        <CardDescription>
-                            Click on the chart to change your earnings goal
-                        </CardDescription>
-                    </CardHeader>
-                    <CardContent className="pl-2">
-                        <LifetimeEarnings data={lifetimeEarnings} />
-                    </CardContent>
-                    <CardFooter className="flex-col gap-2 text-sm">
-                        <div className="flex items-center gap-2 font-medium leading-none">
-                            Work harder to reach your goal!
-                        </div>
-                        <div className="leading-none text-muted-foreground text-center">
-                            Showing total earning from the start of your career
-                        </div>
-                    </CardFooter>
-                </Card> */}
 			</div>
 		</TabsContent>
 	);
