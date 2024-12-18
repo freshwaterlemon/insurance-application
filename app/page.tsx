@@ -4,8 +4,6 @@ import { OverviewTabContent } from '@/components/overview-tab-content';
 import { Skeleton } from '@/components/ui/skeleton';
 
 export default async function Home() {
-	// await new Promise(resolve => setTimeout(resolve, 3000));
-
 	return (
 		<>
 			<div className="flex h-full flex-col mr-4">

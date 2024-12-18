@@ -40,7 +40,11 @@ const items = [
 	},
 ];
 
-export function AppSidebar({ username }) {
+type AppSidebarProps = {
+	username: string;
+};
+
+export function AppSidebar({ username }: AppSidebarProps) {
 	return (
 		<Sidebar collapsible="icon">
 			<SidebarContent>
@@ -86,7 +90,7 @@ export function AppSidebar({ username }) {
 
 								<span>
 									<form
-										action={async (formData) => {
+										action={async () => {
 											'use server';
 											await signOut();
 										}}

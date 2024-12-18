@@ -12,13 +12,18 @@ import Link from 'next/link';
 import { signOut } from '@/lib/auth';
 import { ModeToggle } from './theme-toggle';
 
-export default function Header({ username, image }) {
+type HeaderProps = {
+	username: string;
+	image?: string; // image is optional
+};
+
+export default function Header({ username, image }: HeaderProps) {
 	return (
 		<div className="w-full flex px-8 py-4 justify-end">
 			<DropdownMenu>
 				<DropdownMenuTrigger>
 					<Avatar>
-						<AvatarImage src="" />
+						<AvatarImage src={image} />
 						<AvatarFallback>{username.slice(0, 3)}</AvatarFallback>
 					</Avatar>
 				</DropdownMenuTrigger>
@@ -30,7 +35,7 @@ export default function Header({ username, image }) {
 					<DropdownMenuSeparator />
 					<span>
 						<form
-							action={async (formData) => {
+							action={async () => {
 								'use server';
 								await signOut();
 							}}

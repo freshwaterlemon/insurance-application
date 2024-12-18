@@ -1,8 +1,8 @@
 'use client';
 
 import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@/components/ui/button';
 import {
 	Form,
@@ -35,20 +35,21 @@ import { useRouter } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
 import { addPolicyHolderFormSchema } from '@/schemas';
 
+type Policy = {
+	id: string;
+	name: string;
+};
+
 export default function AddPolicyPage() {
 	const router = useRouter();
 	const { toast } = useToast();
-	// const [availablePolicies, setAvailablePolicies] = useState<string[]>([])
-	const [availablePolicies, setAvailablePolicies] = useState<
-		{ id: string; name: string }[]
-	>([]);
+	const [availablePolicies, setAvailablePolicies] = useState<Policy[]>([]);
 
 	useEffect(() => {
 		async function fetchPolicyTypes() {
 			try {
 				const data = await getPolicies();
 				console.log(data);
-				// setAvailablePolicies(data.policies.map((policy) => policy.InsurancePolicyName));
 				setAvailablePolicies(data.policies || []);
 			} catch (error) {
 				console.error('Error fetching policy types:', error);
@@ -58,7 +59,7 @@ export default function AddPolicyPage() {
 		fetchPolicyTypes();
 	}, []);
 
-	const form = useForm({
+	const form = useForm<z.infer<typeof addPolicyHolderFormSchema>>({
 		resolver: zodResolver(addPolicyHolderFormSchema),
 		defaultValues: {
 			id: '',
@@ -68,16 +69,20 @@ export default function AddPolicyPage() {
 			availablePolicies: '',
 		},
 	});
-	const onSubmit = async (data) => {
+	const onSubmit = async (data: z.infer<typeof addPolicyHolderFormSchema>) => {
 		console.log(data);
 		try {
 			await createCustomerItem(data);
-
 			toast({
 				description: 'Policy holder added',
 			});
+			form.reset();
 		} catch (error) {
 			console.error('Error adding policy:', error);
+			toast({
+				variant: 'destructive',
+				description: 'Failed to add policy holder. Please try again.',
+			});
 		}
 	};
 
@@ -220,30 +225,16 @@ export default function AddPolicyPage() {
 																<SelectValue placeholder="Select policies available" />
 															</SelectTrigger>
 															<SelectContent>
-																{/* {availablePolicies.map((name, index) => (
-																	<SelectItem key={index} value={name}>
-																		{name.id} {name.name}
-																	</SelectItem>
-																))} */}
 																{availablePolicies.map(
 																	(
 																		policy,
 																		index
 																	) => (
 																		<SelectItem
-																			key={
-																				index
-																			}
-																			value={
-																				policy.id
-																			}
+																			key={index}
+																			value={policy.id}
 																		>
-																			{
-																				policy.id
-																			}{' '}
-																			{
-																				policy.name
-																			}
+																			{policy.id}{' '}{policy.name}
 																		</SelectItem>
 																	)
 																)}

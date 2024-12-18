@@ -15,20 +15,24 @@ import { updateUsername } from '@/app/actions/updateUsername';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
-import { getSession } from 'next-auth/react';
+// import { getSession } from 'next-auth/react';
 import { updateUsernameSchema } from '@/schemas';
 
-export default function UpdateUsernameForm({ email }) {
+type UpdateUsernameFormProps = {
+	email: string;
+}
+
+export default function UpdateUsernameForm({ email }: UpdateUsernameFormProps) {
 	const { toast } = useToast();
 
-	const form = useForm({
+	const form = useForm<z.infer<typeof updateUsernameSchema>>({
 		resolver: zodResolver(updateUsernameSchema),
 		defaultValues: {
 			username: '',
 		},
 	});
 
-	const onSubmit = async (data) => {
+	const onSubmit = async (data: z.infer<typeof updateUsernameSchema>) => {
 		console.log(data);
 		try {
 			await updateUsername(email, data);

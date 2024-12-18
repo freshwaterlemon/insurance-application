@@ -9,25 +9,30 @@ import {
 } from '@/components/ui/form';
 import { SheetClose, SheetFooter } from '@/components/ui/sheet';
 import { useForm } from 'react-hook-form';
+import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
-import { getSession } from 'next-auth/react';
+// import { getSession } from 'next-auth/react';
 import { updateUserPasswordSchema } from '@/schemas';
 import { updateUserPassword } from '@/app/actions/updatePassword';
 
-export default function UpdateUserPasswordForm({ email }) {
+interface UpdateUserPasswordFormProps {
+	email: string;
+}
+
+export default function UpdateUserPasswordForm({ email }: UpdateUserPasswordFormProps) {
 	const { toast } = useToast();
 
-	const form = useForm({
+	const form = useForm<z.infer<typeof updateUserPasswordSchema>>({
 		resolver: zodResolver(updateUserPasswordSchema),
 		defaultValues: {
 			password: '',
 		},
 	});
 
-	const onSubmit = async (data) => {
+	const onSubmit = async (data: z.infer<typeof updateUserPasswordSchema>) => {
 		console.log(data);
 		try {
 			await updateUserPassword(email, data);

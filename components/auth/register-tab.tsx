@@ -2,9 +2,7 @@
 
 import * as z from 'zod';
 import { useForm } from 'react-hook-form';
-
 import { zodResolver } from '@hookform/resolvers/zod';
-
 import { RegisterSchema } from '@/schemas';
 import { Input } from '@/components/ui/input';
 import {
@@ -20,17 +18,13 @@ import {
 	Card,
 	CardContent,
 	CardDescription,
-	CardFooter,
 	CardHeader,
 	CardTitle,
 } from '@/components/ui/card';
 import { register } from '@/app/actions/register';
-import { useRouter } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
 
 export const RegisterTab = () => {
-	// This step can be deferred for later use
-	const router = useRouter();
 	const { toast } = useToast();
 
 	const form = useForm<z.infer<typeof RegisterSchema>>({
@@ -53,9 +47,6 @@ export const RegisterTab = () => {
 				title: 'Account created successfully',
 				description: 'Proceed to login',
 			});
-			// This step can be deferred for later use
-			// router.push("/login");
-			// router.refresh();
 		}
 	};
 

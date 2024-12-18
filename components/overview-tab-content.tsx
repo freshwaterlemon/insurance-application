@@ -19,6 +19,8 @@ export async function OverviewTabContent() {
 	const earnings = await getDiffCustomerEarnings();
 	const lifetimeEarnings = await getLifetimeEarnings();
 
+	const validEarnings = Array.isArray(earnings) ? earnings : [];
+
 	return (
 		<TabsContent value="overview" className="space-y-4">
 			<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -92,7 +94,11 @@ export async function OverviewTabContent() {
 						</CardDescription>
 					</CardHeader>
 					<CardContent className="pl-2">
-						<TotalSales data={earnings} />
+						{validEarnings.length > 0 ? (
+							<TotalSales data={validEarnings} />
+						) : (
+							<div>No data available</div>
+						)}
 					</CardContent>
 				</Card>
 

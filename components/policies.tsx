@@ -1,7 +1,18 @@
 import { TableCell, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 
-export function Policies({ policy }) {
+type Policy = {
+	InsurancePolicyID: string;
+	InsurancePolicyName: string;
+	BasePrice: number;
+	TypeOfPolicy: string;
+};
+
+interface PoliciesProps {
+	policy: Policy; // Define the policy prop type
+}
+
+export function Policies({ policy }: PoliciesProps) {
 	// Format the BasePrice as currency
 	const formattedPrice = new Intl.NumberFormat('en-SG', {
 		style: 'currency',

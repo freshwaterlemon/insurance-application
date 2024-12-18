@@ -53,7 +53,7 @@ export default function AddPolicyPage() {
 		fetchPolicyTypes();
 	}, []);
 
-	const form = useForm({
+	const form = useForm<z.infer<typeof addPolicyFormSchema>>({
 		resolver: zodResolver(addPolicyFormSchema),
 		defaultValues: {
 			id: '',
@@ -63,14 +63,19 @@ export default function AddPolicyPage() {
 		},
 	});
 
-	const onSubmit = async (data) => {
+	const onSubmit = async (data: z.infer<typeof addPolicyFormSchema>) => {
 		try {
 			await createPolicyItem(data);
 			toast({
 				description: 'Policy added',
 			});
+			form.reset();
 		} catch (error) {
 			console.error('Error adding policy:', error);
+			toast({
+				variant: 'destructive',
+				description: 'Failed to add policy. Please try again.',
+			});
 		}
 	};
 
@@ -194,16 +199,10 @@ export default function AddPolicyPage() {
 																		index
 																	) => (
 																		<SelectItem
-																			key={
-																				index
-																			}
-																			value={
-																				type
-																			}
+																			key={index}
+																			value={type}
 																		>
-																			{
-																				type
-																			}
+																			{type}
 																		</SelectItem>
 																	)
 																)}
@@ -230,7 +229,6 @@ export default function AddPolicyPage() {
 								>
 									Cancel
 								</Button>
-								{/* <Button type="submit" className='mx-4 mt-4'>Submit</Button> */}
 							</CardFooter>
 						</form>
 					</Form>

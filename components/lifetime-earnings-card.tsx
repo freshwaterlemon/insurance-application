@@ -31,7 +31,11 @@ import { ChartConfig, ChartContainer } from '@/components/ui/chart';
 import { Minus, Plus } from 'lucide-react';
 import { useState } from 'react';
 
-export function LifetimeEarningsCard({ data }) {
+type LifetimeEarningsCardProps = {
+	data: number; 
+  };
+
+export function LifetimeEarningsCard({ data }: LifetimeEarningsCardProps) {
 	const [goal, setGoal] = useState(data + 900);
 
 	function onClick(adjustment: number) {

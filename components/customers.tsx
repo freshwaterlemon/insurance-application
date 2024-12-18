@@ -1,7 +1,22 @@
 import { TableCell, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 
-export function Customers({ customer }) {
+type Policy = {
+	InsurancePolicyID: string;
+	InsurancePolicyName: string;
+};
+type Customer = {
+	PolicyHolderID: string;
+	PolicyHolderEmail: string;
+	FirstName: string;
+	LastName: string;
+	Policies: Policy[];
+};
+type CustomersProps = {
+	customer: Customer;
+};
+
+export function Customers({ customer }: CustomersProps) {
 	return (
 		<TableRow>
 			<TableCell className="font-bold">
