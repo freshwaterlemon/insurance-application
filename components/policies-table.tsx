@@ -47,7 +47,7 @@ export function PoliciesTable({
 		router.push(`/policies/?offset=${offset}`, { scroll: false });
 	}
 	return (
-		<Card className="mt-8 mr-8">
+		<Card className="mt-8 mr-4">
 			<CardHeader>
 				<CardTitle>Insurance Policies</CardTitle>
 				<CardDescription>

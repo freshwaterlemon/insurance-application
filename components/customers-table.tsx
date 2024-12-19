@@ -49,7 +49,7 @@ export function CustomersTable({
 	}
 
 	return (
-		<Card className="mt-8 mr-8">
+		<Card className="mt-8 mr-4">
 			<CardHeader>
 				<CardTitle>Policy Holders</CardTitle>
 				<CardDescription>

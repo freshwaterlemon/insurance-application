@@ -4,6 +4,7 @@ import { OverviewTabContent } from '@/components/overview-tab-content';
 import { Skeleton } from '@/components/ui/skeleton';
 
 export default async function Home() {
+	// test loading
 	// await new Promise(resolve => setTimeout(resolve, 5000));
 
 	return (

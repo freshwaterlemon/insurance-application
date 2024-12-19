@@ -21,7 +21,7 @@ export default async function Account() {
 			<div className="flex justify-start ">
 				<div className="flex flex-row items-center justify-between space-y-0 pb-3 gap-5">
 					<Avatar className="size-16">
-						<AvatarImage src="" />
+						<AvatarImage src={session?.user?.image as string} />
 						<AvatarFallback>
 							{session?.user?.name?.slice(0, 3)}
 						</AvatarFallback>

@@ -15,7 +15,6 @@ import { updateUsername } from '@/app/actions/updateUsername';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
-// import { getSession } from 'next-auth/react';
 import { updateUsernameSchema } from '@/schemas';
 
 type UpdateUsernameFormProps = {
@@ -43,7 +42,7 @@ export default function UpdateUsernameForm({ email }: UpdateUsernameFormProps) {
 				title: 'Name updated successfully',
 				description: 'Log back in to see the changes',
 			});
-			// // Refresh the session to reflect the updated username
+			// // refresh the session to reflect the updated username
 			// const updatedSession = await getSession();
 			// console.log('Session updated:', updatedSession);
 		} catch (error) {

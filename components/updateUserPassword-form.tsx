@@ -14,7 +14,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
-// import { getSession } from 'next-auth/react';
 import { updateUserPasswordSchema } from '@/schemas';
 import { updateUserPassword } from '@/app/actions/updatePassword';
 
@@ -44,9 +43,6 @@ export default function UpdateUserPasswordForm({ email }: UpdateUserPasswordForm
 				title: 'Password updated successfully',
 				description: 'Log back in with new password next time',
 			});
-			// // Refresh the session to reflect the updated username
-			// const updatedSession = await getSession();
-			// console.log('Session updated:', updatedSession);
 		} catch (error) {
 			console.error('Error changing name:', error);
 		}
