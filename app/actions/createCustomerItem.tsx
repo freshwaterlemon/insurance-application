@@ -21,7 +21,7 @@ export async function createCustomerItem(data: {
 		throw new Error('Policy not found');
 	}
 
-	// Create the new policy holder and associate it with the insurance policy
+	// create new policy holder and associate it with insurance policy
 	const newPolicyHolder = await db.policyHolder.create({
 		data: {
 			PolicyHolderID: id,
@@ -42,6 +42,5 @@ export async function createCustomerItem(data: {
 	console.log('New Policy Holder Created:', newPolicyHolder);
 	console.log('Policy Association Created:', newPolicyHolderInsurancePolicy);
 
-	// Redirect to the customers page after successful insertion
 	redirect('/customers');
 }

@@ -27,7 +27,7 @@ export default async function PoliciesPage(props: {
 
 	return (
 		<>
-			<div className="p-4 pt-3">
+			<div className="p-4 pt-3 space-y-4">
 				<Addbutton
 					buttonName={`Add Policy`}
 					linkpath={`policies/add`}

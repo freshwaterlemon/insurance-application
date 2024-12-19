@@ -45,12 +45,12 @@ export default async function RootLayout({
 						disableTransitionOnChange
 					>
 						<SidebarProvider>
-							<AppSidebar username={username} />
+							<AppSidebar username={username as string} />
 							<SidebarTrigger />
 							<main className="w-full">
 								<Header
-									username={username}
-									image={session?.user?.image}
+									username={username as string}
+									image={session?.user?.image as string}
 								/>
 								{children}
 							</main>

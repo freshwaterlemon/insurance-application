@@ -19,6 +19,7 @@ export default function LoginRegister() {
 						</div>
 						Singapore Insurance
 					</Link>
+					
 				</div>
 			</div>
 			<div className="flex flex-col gap-4 p-6 md:p-10">

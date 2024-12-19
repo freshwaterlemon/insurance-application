@@ -3,10 +3,10 @@ import { getCustomersPaged } from '../actions/getCustomersPaged';
 import { CustomersTable } from '@/components/customers-table';
 // import { unstable_cache } from "next/cache";
 
-type SearchParams = Promise<{
-	offset: string;
-	[key: string]: string | string[] | undefined;
-}>;
+type SearchParams = {
+    offset?: string;
+    [key: string]: string | string[] | undefined;
+};
 
 export default async function CustomersPage(props: {
 	searchParams: SearchParams;
@@ -21,12 +21,12 @@ export default async function CustomersPage(props: {
 	);
 
 	if (!customers || customers.length === 0) {
-		return <div>No policies holders found.</div>;
+		return <div>No policies holders found. Add new ones using the button above.</div>;
 	}
 
 	return (
 		<>
-			<div className="p-4 pt-3">
+			<div className="p-4 pt-3 space-y-4">
 				<Addbutton
 					buttonName={`Add Policy Holder`}
 					linkpath={`customers/add`}

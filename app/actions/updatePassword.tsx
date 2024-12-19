@@ -9,10 +9,10 @@ export async function updateUserPassword(
 	try {
 		const updateUser = await db.user.update({
 			where: {
-				email: email, // Ensure email is a string
+				email: email,
 			},
 			data: {
-				password: data.password, // Use the correct field for the update
+				password: data.password,
 			},
 		});
 
@@ -20,6 +20,6 @@ export async function updateUserPassword(
 		return updateUser;
 	} catch (error) {
 		console.error('Error updating username:', error);
-		throw error; // Optionally rethrow to handle it elsewhere
+		throw error;
 	}
 }

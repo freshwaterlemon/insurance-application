@@ -55,7 +55,7 @@ export default async function Account() {
 								</SheetDescription>
 							</SheetHeader>
 
-							<UpdateUsernameForm email={session?.user?.email} />
+							<UpdateUsernameForm email={session?.user?.email as string} />
 						</SheetContent>
 					</Sheet>
 				</div>
@@ -78,7 +78,7 @@ export default async function Account() {
 							</SheetHeader>
 
 							<UpdateUserPasswordForm
-								email={session?.user?.email}
+								email={session?.user?.email as string}
 							/>
 						</SheetContent>
 					</Sheet>

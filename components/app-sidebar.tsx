@@ -55,10 +55,10 @@ export function AppSidebar({ username }: AppSidebarProps) {
 							{items.map((item) => (
 								<SidebarMenuItem key={item.title}>
 									<SidebarMenuButton asChild>
-										<a href={item.url}>
+										<Link href={item.url}>
 											<item.icon />
 											<span>{item.title}</span>
-										</a>
+										</Link>
 									</SidebarMenuButton>
 								</SidebarMenuItem>
 							))}
@@ -80,10 +80,10 @@ export function AppSidebar({ username }: AppSidebarProps) {
 							</DropdownMenuTrigger>
 							<DropdownMenuContent
 								side="top"
-								// className="w-[--radix-popper-anchor-width]"
+							// className="w-[--radix-popper-anchor-width]"
 							>
 								<Link href={'/account'}>
-									<DropdownMenuItem>
+									<DropdownMenuItem className="h-12 pl-6">
 										<span>My Account</span>
 									</DropdownMenuItem>
 								</Link>
@@ -99,7 +99,7 @@ export function AppSidebar({ username }: AppSidebarProps) {
 											<Button
 												variant="ghost"
 												type="submit"
-												className="text-left h-3 w-full"
+												className="text-left pr-10 w-full"
 											>
 												Log Out
 											</Button>

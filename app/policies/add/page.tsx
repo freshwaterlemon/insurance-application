@@ -81,7 +81,7 @@ export default function AddPolicyPage() {
 
 	return (
 		<div className="flex justify-center items-center">
-			<Card className={'w-1/3'}>
+			<Card className={'w-full max-w-md mx-auto'}>
 				<CardHeader>
 					<CardTitle>Add Policy</CardTitle>
 					<CardDescription>Add a new policy</CardDescription>

@@ -10,10 +10,10 @@ export async function getPoliciesPaged(skip: number, take: number) {
 		});
 		const totalPolicy = await db.insurancePolicy.count();
 
-		// Ensure to map and transform any necessary fields like Decimal
+	
 		const transformedPolicies = policies.map((policy) => ({
 			...policy,
-			BasePrice: parseFloat(policy.BasePrice.toString()), // Ensure conversion if Decimal type
+			BasePrice: parseFloat(policy.BasePrice.toString()), 
 		}));
 
 		return {

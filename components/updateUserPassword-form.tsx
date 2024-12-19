@@ -19,10 +19,13 @@ import { updateUserPasswordSchema } from '@/schemas';
 import { updateUserPassword } from '@/app/actions/updatePassword';
 
 interface UpdateUserPasswordFormProps {
-	email: string;
+	email: string ;
 }
 
 export default function UpdateUserPasswordForm({ email }: UpdateUserPasswordFormProps) {
+	if (!email) {
+		throw new Error('Email is required to update username.');
+	}
 	const { toast } = useToast();
 
 	const form = useForm<z.infer<typeof updateUserPasswordSchema>>({

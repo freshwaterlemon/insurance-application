@@ -35,7 +35,6 @@ export async function getLifetimeEarnings(): Promise<number> {
 		);
 		throw new Error(`Failed to calculate lifetime earnings`);
 	} finally {
-		// Ensure the database connection is closed
 		await db.$disconnect();
 	}
 }

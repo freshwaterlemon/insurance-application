@@ -2,17 +2,16 @@ import { db } from '@/db';
 
 export async function getDashboardData() {
 	try {
-		// Perform all queries concurrently to optimize execution time
+
 		const [totalSales, policiesCount, uniqueCustomers] = await Promise.all([
-			db.policyHolderInsurancePolicy.count(), // Total sales
-			db.insurancePolicy.count(), // Total policies
+			db.policyHolderInsurancePolicy.count(),
+			db.insurancePolicy.count(),
 			db.policyHolderInsurancePolicy.groupBy({
 				by: ['PolicyHolderID'],
-				_count: { PolicyHolderID: true }, // Get unique customers
+				_count: { PolicyHolderID: true },
 			}),
 		]);
 
-		// Extract the unique customers count
 		const customersCount = uniqueCustomers.length;
 
 		return {

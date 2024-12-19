@@ -42,9 +42,7 @@ export function LifetimeEarningsCard({ data }: LifetimeEarningsCardProps) {
 		setGoal(Math.max(200, goal + adjustment));
 	}
 
-	// const maxValue = goal;
-	// const normalizedValue = ((data / maxValue) * 100);
-	const normalizedValue = Math.min(1, data / goal); // Capped at 100%
+	const normalizedValue = Math.min(1, data / goal); 
 
 	const chartData = [{ percentage: normalizedValue, fill: 'grey' }];
 	const chartConfig = {
@@ -74,7 +72,6 @@ export function LifetimeEarningsCard({ data }: LifetimeEarningsCardProps) {
 									<RadialBarChart
 										data={chartData}
 										startAngle={90}
-										// endAngle={-(normalizedValue + 180)}
 										endAngle={90 - normalizedValue * 360}
 										innerRadius={80}
 										outerRadius={110}
@@ -187,16 +184,12 @@ export function LifetimeEarningsCard({ data }: LifetimeEarningsCardProps) {
 								<div className="text-7xl font-bold tracking-tighter m-2">
 									{goal}
 								</div>
-								{/* <div className="text-[0.70rem] uppercase text-muted-foreground">
-                                    Calories/day
-                                </div> */}
 							</div>
 							<Button
 								variant="outline"
 								size="icon"
 								className="h-8 w-8 shrink-0 rounded-full"
 								onClick={() => onClick(50)}
-								// disabled={goal >= 400}
 							>
 								<Plus />
 								<span className="sr-only">Increase</span>
@@ -207,9 +200,6 @@ export function LifetimeEarningsCard({ data }: LifetimeEarningsCardProps) {
 						<DrawerClose asChild>
 							<Button className="mb-4">Set</Button>
 						</DrawerClose>
-						{/* <DrawerClose asChild>
-                            <Button variant='outline' >Cancel</Button>
-                        </DrawerClose> */}
 					</DrawerFooter>
 				</div>
 			</DrawerContent>

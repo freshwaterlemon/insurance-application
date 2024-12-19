@@ -4,6 +4,8 @@ import { OverviewTabContent } from '@/components/overview-tab-content';
 import { Skeleton } from '@/components/ui/skeleton';
 
 export default async function Home() {
+	// await new Promise(resolve => setTimeout(resolve, 5000));
+
 	return (
 		<>
 			<div className="flex h-full flex-col mr-4">
@@ -33,7 +35,9 @@ export default async function Home() {
 						</TabsList>
 
 						<OverviewTabContent />
-						<TabsContent value="analytics" className="space-y-4">
+
+						{['analytics', 'reports', 'notifications'].map((tab) => (
+						<TabsContent value={tab} key={tab} className="space-y-4">
 							<div className="flex flex-col space-y-3">
 								<Skeleton className="h-[125px] w-[250px] rounded-xl" />
 								<div className="space-y-2">
@@ -42,27 +46,7 @@ export default async function Home() {
 								</div>
 							</div>
 						</TabsContent>
-						<TabsContent value="reports" className="space-y-4">
-							<div className="flex flex-col space-y-3">
-								<Skeleton className="h-[125px] w-[250px] rounded-xl" />
-								<div className="space-y-2">
-									<Skeleton className="h-4 w-[250px]" />
-									<Skeleton className="h-4 w-[200px]" />
-								</div>
-							</div>
-						</TabsContent>
-						<TabsContent
-							value="notifications"
-							className="space-y-4"
-						>
-							<div className="flex flex-col space-y-3">
-								<Skeleton className="h-[125px] w-[250px] rounded-xl" />
-								<div className="space-y-2">
-									<Skeleton className="h-4 w-[250px]" />
-									<Skeleton className="h-4 w-[200px]" />
-								</div>
-							</div>
-						</TabsContent>
+					))}
 					</Tabs>
 				</div>
 			</div>

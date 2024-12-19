@@ -24,7 +24,9 @@ type UpdateUsernameFormProps = {
 
 export default function UpdateUsernameForm({ email }: UpdateUsernameFormProps) {
 	const { toast } = useToast();
-
+	if (!email) {
+		throw new Error('Email is required to update username.');
+	}
 	const form = useForm<z.infer<typeof updateUsernameSchema>>({
 		resolver: zodResolver(updateUsernameSchema),
 		defaultValues: {

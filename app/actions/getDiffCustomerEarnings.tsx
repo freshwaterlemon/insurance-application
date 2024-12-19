@@ -1,8 +1,8 @@
-import { db } from '@/db'; // Assuming your Prisma client instance is correctly imported
+import { db } from '@/db';
 
 export async function getDiffCustomerEarnings() {
 	try {
-		// Fetch all policyholders with the base price of each insurance policy they hold
+		// fetch all policyholders with the base price of each insurance policy they hold
 		const policyHolders = await db.policyHolder.findMany({
 			include: {
 				InsurancePolicies: {
@@ -17,14 +17,14 @@ export async function getDiffCustomerEarnings() {
 			},
 		});
 
-		// Calculate lifetime earnings (10% of base price) for each policyholder
+		// calculate lifetime earnings (10% of base price) for each policyholder
 		const earnings = policyHolders.map((holder) => {
 			const totalEarnings = holder.InsurancePolicies.reduce(
 				(sum, policyHolder) => {
 					const basePrice = parseFloat(
 						policyHolder.InsurancePolicy.BasePrice.toString()
 					);
-					return sum + basePrice * 0.1; // Add 10% of the base price
+					return sum + basePrice * 0.1;
 				},
 				0
 			);
