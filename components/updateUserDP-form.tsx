@@ -14,34 +14,34 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
-import { updateUserPasswordSchema } from '@/schemas';
-import { updateUserPassword } from '@/app/actions/updatePassword';
+import { updateUserDPSchema } from '@/schemas';
+import { updateUserDP } from '@/app/actions/updateUserDP';
 
-interface UpdateUserPasswordFormProps {
+interface UpdateUserDPFormProps {
 	email: string ;
 }
 
-export default function UpdateUserPasswordForm({ email }: UpdateUserPasswordFormProps) {
+export default function UpdateUserDPForm({ email }: UpdateUserDPFormProps) {
 	if (!email) {
-		throw new Error('Email is required to update password.');
+		throw new Error('Email is required to update image.');
 	}
 	const { toast } = useToast();
 
-	const form = useForm<z.infer<typeof updateUserPasswordSchema>>({
-		resolver: zodResolver(updateUserPasswordSchema),
+	const form = useForm<z.infer<typeof updateUserDPSchema>>({
+		resolver: zodResolver(updateUserDPSchema),
 		defaultValues: {
-			password: '',
+			image: '',
 		},
 	});
 
-	const onSubmit = async (data: z.infer<typeof updateUserPasswordSchema>) => {
+	const onSubmit = async (data: z.infer<typeof updateUserDPSchema>) => {
 		console.log(data);
 		try {
-			await updateUserPassword(email, data);
+			await updateUserDP(email, data);
 			form.reset();
 			toast({
-				title: 'Password updated successfully',
-				description: 'Log back in with new password next time',
+				title: 'Display Photo updated successfully',
+				description: 'Log back in to view changes next time',
 			});
 		} catch (error) {
 			console.error('Error changing name:', error);
@@ -58,17 +58,17 @@ export default function UpdateUserPasswordForm({ email }: UpdateUserPasswordForm
 					<div className="space-y-4 mt-5">
 						<FormField
 							control={form.control}
-							name="password"
+							name="image"
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel className="mx-1">
-										Password
+										Image URL
 									</FormLabel>
 									<FormControl>
 										<Input
 											className="h-10 w-full"
-											placeholder="******"
-											type="password"
+											placeholder="https://picsum.photos/200"
+											type="text"
 											{...field}
 										/>
 									</FormControl>

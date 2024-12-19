@@ -175,7 +175,7 @@ export function LifetimeEarningsCard({ data }: LifetimeEarningsCardProps) {
 								size="icon"
 								className="h-8 w-8 shrink-0 rounded-full"
 								onClick={() => onClick(-50)}
-								disabled={goal <= 10}
+								disabled={goal <= data}
 							>
 								<Minus />
 								<span className="sr-only">Decrease</span>

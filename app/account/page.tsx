@@ -12,6 +12,7 @@ import { auth } from '@/lib/auth';
 import { SquarePen } from 'lucide-react';
 import UpdateUsernameForm from '@/components/updateUsername-form';
 import UpdateUserPasswordForm from '@/components/updateUserPassword-form';
+import UpdateUserDPForm from '@/components/updateUserDP-form';
 
 export default async function Account() {
 	const session = await auth();
@@ -78,6 +79,30 @@ export default async function Account() {
 							</SheetHeader>
 
 							<UpdateUserPasswordForm
+								email={session?.user?.email as string}
+							/>
+						</SheetContent>
+					</Sheet>
+				</div>
+				<div className="gap-5">
+					<Sheet>
+						<SheetTrigger asChild>
+							<Button variant="default" className="mt-5">
+								<SquarePen className="h-6 w-6 text-muted-foreground" />
+								Change Profile Photo
+							</Button>
+						</SheetTrigger>
+
+						<SheetContent>
+							<SheetHeader>
+								<SheetTitle>Change Profile Photo</SheetTitle>
+								<SheetDescription>
+									Make changes to your profile photo here. Click
+									save when you&apos;re done.
+								</SheetDescription>
+							</SheetHeader>
+
+							<UpdateUserDPForm
 								email={session?.user?.email as string}
 							/>
 						</SheetContent>

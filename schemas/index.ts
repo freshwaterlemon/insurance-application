@@ -29,6 +29,10 @@ export const updateUserPasswordSchema = z.object({
 	password: z.string().min(1, 'A password is required'),
 });
 
+export const updateUserDPSchema = z.object({
+	image: z.string().min(1, 'A image url is required'),
+});
+
 export const addPolicyFormSchema = z.object({
 	id: z.string().min(1, 'ID is required'),
 	name: z.string().min(3, 'Name must be at least 3 characters'),
