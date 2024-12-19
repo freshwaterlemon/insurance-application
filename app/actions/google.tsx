@@ -3,7 +3,7 @@
 import { signIn } from '@/lib/auth';
 import { isRedirectError } from 'next/dist/client/components/redirect';
 
-export async function GoogleLogin(data: unknown) {
+export async function GoogleLogin(data) {
 	try {
 		await signIn('google', { redirectTo: '/' });
 	} catch (error) {

@@ -2,13 +2,17 @@
 
 import { GoogleLogin } from '../../app/actions/google';
 import { FaGoogle } from 'react-icons/fa';
+import { Button } from '../ui/button';
 
 export const Social = () => {
 	return (
 		<div>
 			<form action={GoogleLogin}>
-				<FaGoogle />
-				<button type="submit">Sign In with Google</button>
+
+				<Button variant="outline" className="w-full">
+					<FaGoogle />
+					Login with Google
+				</Button>
 			</form>
 		</div>
 	);

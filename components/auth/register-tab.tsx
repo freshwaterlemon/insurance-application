@@ -58,7 +58,7 @@ export const RegisterTab = () => {
 					Dont&apos;t worry register an account with us
 				</CardDescription>
 			</CardHeader>
-			<CardContent className="space-y-2 mb-7">
+			<CardContent className="space-y-3 mb-4">
 				<Form {...form}>
 					<form
 						onSubmit={form.handleSubmit(onSubmit)}

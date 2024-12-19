@@ -12,7 +12,6 @@ export async function createCustomerItem(data: {
 }) {
 	const { id, email, firstname, lastname, availablePolicies } = data;
 
-	// Fetch the policy from the database based on policyType
 	const policy = await db.insurancePolicy.findUnique({
 		where: { InsurancePolicyID: availablePolicies },
 	});
