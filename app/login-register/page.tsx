@@ -8,7 +8,7 @@ import Link from 'next/link';
 export default function LoginRegister() {
 	return (
 		<div className="grid min-h-svh lg:grid-cols-2">
-			<div className="relative bg-muted lg:block bg-neutral-800">
+			<div className="relative lg:block bg-muted-foreground">
 				<div className="flex justify-center gap-2 md:justify-start text-neutral-50">
 					<Link
 						href="/"

@@ -42,16 +42,16 @@ export default async function Account() {
 					<Sheet>
 						<SheetTrigger asChild>
 							<Button variant="default" className="mt-5">
-								<SquarePen className="h-6 w-6 text-muted-foreground" />
-								Edit Profile
+								<SquarePen className="stroke-accent h-6 w-6 text-muted-foreground" />
+								Username
 							</Button>
 						</SheetTrigger>
 
 						<SheetContent>
 							<SheetHeader>
-								<SheetTitle>Edit profile</SheetTitle>
+								<SheetTitle>Edit username</SheetTitle>
 								<SheetDescription>
-									Make changes to your profile here. Click
+									Make changes to your username here. Click
 									save when you&apos;re done.
 								</SheetDescription>
 							</SheetHeader>
@@ -64,8 +64,8 @@ export default async function Account() {
 					<Sheet>
 						<SheetTrigger asChild>
 							<Button variant="default" className="mt-5">
-								<SquarePen className="h-6 w-6 text-muted-foreground" />
-								Change Password
+								<SquarePen className="stroke-accent h-6 w-6 text-muted-foreground" />
+								Password
 							</Button>
 						</SheetTrigger>
 
@@ -88,8 +88,8 @@ export default async function Account() {
 					<Sheet>
 						<SheetTrigger asChild>
 							<Button variant="default" className="mt-5">
-								<SquarePen className="h-6 w-6 text-muted-foreground" />
-								Change Profile Photo
+								<SquarePen className="stroke-accent h-6 w-6 text-muted-foreground" />
+								Profile Photo
 							</Button>
 						</SheetTrigger>
 

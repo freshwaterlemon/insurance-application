@@ -69,7 +69,7 @@ export default function UpdateUsernameForm({ email }: UpdateUsernameFormProps) {
 									<FormControl>
 										<Input
 											className="h-10 w-full"
-											placeholder="John Doe"
+											placeholder="Enter name"
 											type="text"
 											{...field}
 										/>

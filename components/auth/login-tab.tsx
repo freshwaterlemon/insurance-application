@@ -73,7 +73,7 @@ export const LoginTab = () => {
 										<FormControl>
 											<Input
 												{...field}
-												placeholder="john.doe@example.com"
+												placeholder="Enter email"
 												type="email"
 											/>
 										</FormControl>
@@ -102,7 +102,7 @@ export const LoginTab = () => {
 										<FormControl>
 											<Input
 												{...field}
-												placeholder="******"
+												placeholder="Enter password"
 												type="password"
 											/>
 										</FormControl>

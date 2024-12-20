@@ -70,11 +70,11 @@ export const RegisterTab = () => {
 								name="name"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>Name</FormLabel>
+										<FormLabel>Username</FormLabel>
 										<FormControl>
 											<Input
 												{...field}
-												placeholder="John Doe"
+												placeholder="Enter username"
 											/>
 										</FormControl>
 										<FormMessage />
@@ -90,7 +90,7 @@ export const RegisterTab = () => {
 										<FormControl>
 											<Input
 												{...field}
-												placeholder="john.doe@example.com"
+												placeholder="Enter email"
 												type="email"
 											/>
 										</FormControl>
@@ -107,7 +107,7 @@ export const RegisterTab = () => {
 										<FormControl>
 											<Input
 												{...field}
-												placeholder="******"
+												placeholder="Enter password"
 												type="password"
 											/>
 										</FormControl>

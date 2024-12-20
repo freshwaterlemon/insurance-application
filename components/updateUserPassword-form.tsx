@@ -67,7 +67,7 @@ export default function UpdateUserPasswordForm({ email }: UpdateUserPasswordForm
 									<FormControl>
 										<Input
 											className="h-10 w-full"
-											placeholder="******"
+											placeholder="Enter password"
 											type="password"
 											{...field}
 										/>
